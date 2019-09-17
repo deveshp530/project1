@@ -1,0 +1,37 @@
+.circles{
+    display: grid;
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    grid-template-columns: 1fr 1fr;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    cursor: pointer;
+ }
+
+ #circle1{
+     background: #F64908;
+     border-radius: 40px;
+     border: 3px solid black;
+ }
+ #circle2{
+    background: #8E9B0E;
+    border-radius: 40px;
+    border: 3px solid black;
+
+}
+
+#circle3{
+    background: #12A3E1;
+    border-radius: 40px;
+    border: 3px solid black;
+
+
+}
+#circle4{
+    background: #270644;
+    border-radius: 40px;
+    border: 3px solid black;
+
+}
+
