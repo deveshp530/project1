@@ -1,8 +1,23 @@
-
+body{
+    font-family: 'Baloo', cursive;
+    background: #CAC9CB;
+}
+h1{
+    font-size: 50px;
+    text-align: center;
+}
+h2{
+    text-align: right;
+    margin-right: 20px;
+    font-size: 30px;
+}
+h3{
+    text-align: left;
+    margin-right: 20px;
+}
 .circles{
     display: grid;
-    grid-column-gap: 1px;
-    grid-row-gap: 1px;
+    grid-gap: 30px;
     grid-template-columns: 1fr 1fr;
     width: 300px;
     height: 300px;
@@ -10,6 +25,7 @@
     cursor: pointer;
     text-align: center;
     font-size: 30px;
+    margin: auto;
  }
 
  #circle1{
@@ -28,13 +44,18 @@
     background: #12A3E1;
     border-radius: 40px;
     border: 3px solid black;
-
-
 }
 #circle4{
     background: #270644;
     border-radius: 40px;
     border: 3px solid rgba(0, 0, 0, 0.541);
-
 }
 
+.buttons{
+    border-radius: 20px;
+    font-size: 15px;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    background: 
+}
