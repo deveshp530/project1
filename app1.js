@@ -7,9 +7,10 @@ let circleContainer = document.querySelector('.circles')
 let allCircles = document.getElementsByClassName('circleButton')
 let jsScore = document.getElementById('js-score')
 let jsRound = document.getElementById('js-round')
+let startButton = document.getElementById('start')
 let simon = []
 let userInput = []
-let numberOfFlashes = 6
+let numberOfFlashes = 1
 let score = 0
 let round = 1
 let hasStarted = true
@@ -58,8 +59,8 @@ const flashPurple = () => {
 // randomizer has to call the flash(s) functions in that order, 
 
 const simonRandomizer =() => {
+    simon.push(Math.floor(Math.random()*4) + 1)
     for(let i = 0; i < numberOfFlashes; i++){
-        simon.push(Math.floor(Math.random()*4) + 1)
         setTimeout(function(){
             if(simon[i] == 1){
                 flashRed()
@@ -72,17 +73,18 @@ const simonRandomizer =() => {
             }
         },1000 * i )
         
-    console.log(simon);
+    
 
     //depending on the current round youre on make array longer 
     // this makes it harder for the user to repeat
     }
+    // console.log(simon);
 }
- simonRandomizer()   
 
 // a checker, that user is repeating that order(hint array comparison)
 const startGame = () =>{
     if(hasStarted){
+        simonRandomizer()
         for(let i = 0; i < allCircles.length; i++){
             allCircles[i].addEventListener('click',function(event){
             event.target.style.opacity = .4
@@ -93,12 +95,18 @@ const startGame = () =>{
             console.log(userInput);        
         })
         }
-        setTimeout(userSequence,10000)
+        setTimeout(userSequence,2500 * numberOfFlashes)
 
 
     }
 }
 
+//start game
+// push number in simon Array
+// flash color
+// get userinput
+// if user matches simon Array, update score and round. 
+//     push another number in simon array and start process again
 const userSequence = () =>{
     for(let i = 0; i < userInput.length; i++){
         if(userInput[i] === simon[i]){
@@ -109,15 +117,21 @@ const userSequence = () =>{
             round++
             jsRound.innerText = 'Round: ' + round
             numberOfFlashes++
-            simonRandomizer()
+            //simon.push(Math.floor(Math.random()*4) + 1)
+            console.log(simon);
             startGame()
-        }else{
+            break;
+        }
+         if(userInput[i] !== simon[i]){
+            alert('you lost')
             userInput = []
             simon =[]
             score = 0
             jsScore.innerText = 'Score: ' + score
-            numberOfFlashes = 6
-            alert('you lost')
+            round = 0
+            jsRound.innerText = 'Round: ' + round
+            numberOfFlashes = 1
+            break;
         }
     }
 }
@@ -129,4 +143,4 @@ const userSequence = () =>{
 // restart button? clears the simon array? 
 //
 
-startGame()
+startButton.addEventListener('click',startGame)
