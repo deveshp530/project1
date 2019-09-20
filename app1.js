@@ -65,7 +65,40 @@ const simonArray = () => {
     // this makes it harder for the user to repeat
   }
 };
-function userClicks() {
+const checkUserSequence = () => {
+    console.log("yyo");
+    for (let i = 0; i < userInput.length; i++) {
+      if (userInput[i] !== simon[i]) {
+      console.log('in forloop for userseq');  
+        lost.innerText = "YOU LOST";
+        userInput = [];
+        simon = [];
+        score = 0;
+        jsScore.innerText = "Score: " + score;
+        round = 0;
+        jsRound.innerText = "Round: " + round;
+        numberOfFlashes = 1;
+        hasStarted = false;
+        return;
+      }
+    }
+    moveOn();
+  };
+  
+  const moveOn = () => {
+    userInput = [];
+    console.log("hi");
+    score++;
+    jsScore.innerText = "Score: " + score;
+    round++;
+    jsRound.innerText = "Round: " + round;
+    numberOfFlashes++;
+    startGame();
+    console.log("user moveon", userInput);
+    console.log("simon moveon", simon);
+  };
+
+const userClicks = () => {
   for (let i = 0; i < allCircles.length; i++) {
     allCircles[i].addEventListener("click", function(event) {
       event.target.style.opacity = 0.4;
@@ -73,21 +106,20 @@ function userClicks() {
         event.target.style.opacity = 1;
       }, 500);
       userInput.push(i + 1);
-      //   console.log(userInput);
-      
+      if(userInput.length === simon.length){
+          checkUserSequence()
+      }       
     });
-  } 
+  }
 }
-
 
 // a checker, that user is repeating that order(hint array comparison)
 const startGame = () => {
   let hasStarted = true;
-  lost.innerText = "";
+  lost.innerText = '';
+  jsRound.innerText = "Round: " + round;
   if (hasStarted) {
     simonArray();
-    setTimeout(userSequence, 2500 * numberOfFlashes);
-    //userSequence()
   }
 };
 userClicks();
@@ -100,41 +132,6 @@ userClicks();
 //     push another number in simon array and start process again
 
 
-
-const userSequence = () => {
-    console.log('yyo');
-
-  for (let i = 0; i < userInput.length; i++) {
-    if (userInput[i] !== simon[i]) {
-      lost.innerText = "YOU LOST"; 
-      userInput = [];
-      simon = [];
-      score = 0;
-      jsScore.innerText = "Score: " + score;
-      round = 0;
-      jsRound.innerText = "Round: " + round;
-      numberOfFlashes = 1;
-      hasStarted = false;
-      return;
-    }else{
-        moveOn();
-    }
-  }
-  
-};
-
-const moveOn = () => {
-  userInput = [];
-  console.log("hi");
-  score++;
-  jsScore.innerText = "Score: " + score;
-  round++;
-  jsRound.innerText = "Round: " + round;
-  numberOfFlashes++;
-  startGame();
-console.log('user moveon',userInput);
-console.log('simon moveon',simon);
-};
 // score counter for every round
 // restart button? clears the simon array?
 //
