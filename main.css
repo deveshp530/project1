@@ -12,6 +12,7 @@ h2{
     font-size: 30px;
 }
 h3{
+    height: auto;
     text-align: left;
     margin-right: 20px;
 }
@@ -51,10 +52,14 @@ h3{
     border: 3px solid rgba(0, 0, 0, 0.541);
 }
 
-.buttons{
-    border-radius: 20px;
+#start{
+    border-radius: 10px;
     font-size: 15px;
-    width: 300px;
-    height: 300px;
+    width: 50px;
+    height: 50px;
     margin: auto;
+    font-family: 'Baloo', cursive;
+    background: #CAC9CB;
+    border: 3px solid black;
+
 }
