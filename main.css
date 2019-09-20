@@ -18,7 +18,7 @@ h3{
 }
 .circles{
     display: grid;
-    grid-gap: 30px;
+    grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
     width: 300px;
     height: 300px;
@@ -52,14 +52,24 @@ h3{
     border: 3px solid rgba(0, 0, 0, 0.541);
 }
 
+.buttons{
+    display: flex;
+    justify-content: center;
+}
 #start{
     border-radius: 10px;
     font-size: 15px;
-    width: 50px;
-    height: 50px;
     margin: auto;
     font-family: 'Baloo', cursive;
     background: #CAC9CB;
     border: 3px solid black;
+}
 
+#reset{
+    border-radius: 10px;
+    font-size: 15px;  
+    margin: auto;
+    font-family: 'Baloo', cursive;
+    background: #CAC9CB;
+    border: 3px solid black;
 }

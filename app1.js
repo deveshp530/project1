@@ -8,6 +8,7 @@ let jsScore = document.getElementById("js-score");
 let jsRound = document.getElementById("js-round");
 let startButton = document.getElementById("start");
 let lost = document.getElementById("youLost");
+let resetBtn = document.getElementById('reset')
 let simon = [];
 let userInput = [];
 let numberOfFlashes = 1;
@@ -66,38 +67,35 @@ const simonArray = () => {
   }
 };
 const checkUserSequence = () => {
-    console.log("yyo");
-    for (let i = 0; i < userInput.length; i++) {
-      if (userInput[i] !== simon[i]) {
-      console.log('in forloop for userseq');  
-        lost.innerText = "YOU LOST";
-        userInput = [];
-        simon = [];
-        score = 0;
-        jsScore.innerText = "Score: " + score;
-        round = 0;
-        jsRound.innerText = "Round: " + round;
-        numberOfFlashes = 1;
-        hasStarted = false;
-        return;
-      }
+  for (let i = 0; i < userInput.length; i++) {
+    if (userInput[i] !== simon[i]) {
+      console.log("in forloop for userseq");
+      lost.innerText = "YOU LOST";
+      userInput = [];
+      simon = [];
+      score = 0;
+      jsScore.innerText = "Score: " + score;
+      round = 0;
+      jsRound.innerText = "Round: " + round;
+      numberOfFlashes = 1;
+      hasStarted = false;
+      return;
     }
-    moveOn();
-  };
-  
-  const moveOn = () => {
-    userInput = [];
-    console.log("hi");
-    score++;
-    jsScore.innerText = "Score: " + score;
-    round++;
-    jsRound.innerText = "Round: " + round;
-    numberOfFlashes++;
-    startGame();
-    console.log("user moveon", userInput);
-    console.log("simon moveon", simon);
-  };
+  }
+  moveOn();
+};
 
+const moveOn = () => {
+  userInput = [];
+  score++;
+  jsScore.innerText = "Score: " + score;
+  round++;
+  jsRound.innerText = "Round: " + round;
+  numberOfFlashes++;
+  startGame();
+};
+
+// a checker, that user is repeating that order(hint array comparison)
 const userClicks = () => {
   for (let i = 0; i < allCircles.length; i++) {
     allCircles[i].addEventListener("click", function(event) {
@@ -106,17 +104,16 @@ const userClicks = () => {
         event.target.style.opacity = 1;
       }, 500);
       userInput.push(i + 1);
-      if(userInput.length === simon.length){
-          checkUserSequence()
-      }       
+      if (userInput.length === simon.length) {
+        checkUserSequence();
+      }
     });
   }
-}
+};
 
-// a checker, that user is repeating that order(hint array comparison)
 const startGame = () => {
   let hasStarted = true;
-  lost.innerText = '';
+  lost.innerText = "";
   jsRound.innerText = "Round: " + round;
   if (hasStarted) {
     simonArray();
@@ -131,9 +128,12 @@ userClicks();
 // if user matches simon Array, update score and round.
 //     push another number in simon array and start process again
 
-
 // score counter for every round
 // restart button? clears the simon array?
 //
 
 startButton.addEventListener("click", startGame);
+resetBtn.addEventListener('click', function(event){
+  event.preventDefault();
+  location.reload();
+})
