@@ -50,7 +50,7 @@ const flashPurple = () => {
 const simonArray = () => {
   simon.push(Math.floor(Math.random() * 4) + 1);
   for (let i = 0; i < numberOfFlashes; i++) {
-    setTimeout(function() {
+    setTimeout(function() { // make this an ES6 IFFEs it's cleaner and looks better on your resume
       if (simon[i] == 1) {
         flashRed();
       } else if (simon[i] == 2) {
@@ -98,7 +98,8 @@ const moveOn = () => {
 // a checker, that user is repeating that order(hint array comparison)
 const userClicks = () => {
   for (let i = 0; i < allCircles.length; i++) {
-    allCircles[i].addEventListener("click", function(event) {
+    // make this an es6 IFFE
+    allCircles[i].addEventListener("click", function(event) { 
       event.target.style.opacity = 0.4;
       setTimeout(() => {
         event.target.style.opacity = 1;
